@@ -1,5 +1,5 @@
 # Next Level Week 2 - Rocketseat
-This application was created at (Next Level Week)[https://rocketseat.com.br] of (Rocketseat)[https://rocketseat.com.br]
+This application was created at [Next Level Week](https://nextlevelweek.com/)  of [Rocketseat](https://rocketseat.com.br)
 
 ## Lessons
   - Lesson 01 - Acelerando sua evolução
@@ -25,7 +25,8 @@ This application was created at (Next Level Week)[https://rocketseat.com.br] of 
   
 #### Start Server (After of clone the project...)
    1. Enter in server folder:`cd server`
-   2. Start server with:`yarn start` or `npm start`
+   2. Create the database with: `yarn knex:migrate` or `npm knex:migrate`
+   3. Start server with:`yarn start` or `npm start`
    
 #### Start Web (After of clone the project and server running)
    1. Enter in web folder:`cd web`
