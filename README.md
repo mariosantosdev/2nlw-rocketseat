@@ -12,3 +12,6 @@ Aplicação web criada na Next Level Week da Rocketseat
 
   - AULA 04 - Até 2 anos em 2 meses
     * Foi criado a base da aplicação mobile utilizando react native, utilizamos react-navigation para a navegação entre telas
+
+  - AULA 05 - A milha extra
+    * Finalizamos a aplicação mobile, foi feito nessa aula a conexão do back end com o front end utilizando axios
