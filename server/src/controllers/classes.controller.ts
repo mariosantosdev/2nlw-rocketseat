@@ -54,7 +54,7 @@ export default class ClassesControlle {
             const insertedTeachersIds = await trx('teachers').insert({
                 name,
                 email,
-                avatar: avatar || null,
+                avatar: avatar || 'https://i.imgur.com/UBwId58.png',
                 whatsapp,
                 bio
             })
