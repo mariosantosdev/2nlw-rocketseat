@@ -1,17 +1,39 @@
 # Next Level Week 2 - Rocketseat
-Aplicação web criada na Next Level Week da Rocketseat
+This application was created at (Next Level Week)[https://rocketseat.com.br] of (Rocketseat)[https://rocketseat.com.br]
 
-  - AULA 01 - Acelerando sua evolução
-    * Foi criado a landing page, e a pagina de listagem dos professores, alem disso criamos dois componentes globais para a aplicação (Header e TeacherItem)
+## Lessons
+  - Lesson 01 - Acelerando sua evolução
+    * In this lesson, the landing page and page of list of teachers was created moreover we created two global components (Header and TeacherItem)
 
-  - AULA 02 - Olhando as oportunidades
-    * Foi criado a API da aplicação utilizando express, fizemos o cadastro das conexões e das aulas e fizemos também a listagem de ambas, utilizando knex e sqlite3
+  - Lesson 02 - Olhando as oportunidades
+    * In this lesson, the application API was created using express and knex/sqlite to the database
 
-  - AULA 03 - A escolha da stack
-    * Foi criado a conexão do front-end com o back-end, fizemos alguns ajustes no css do front end e vimos basicamente o conceito do useState e do useEffect do React
+  - Lesson 03 - A escolha da stack
+    * In this lesson, was created the connection of back-end with the front-end, we saw useState and useEffect of React
 
-  - AULA 04 - Até 2 anos em 2 meses
-    * Foi criado a base da aplicação mobile utilizando react native, utilizamos react-navigation para a navegação entre telas
+  - Lesson 04 - Até 2 anos em 2 meses
+    * In this lesson, we started the mobile application using the react native and react-navigation to navigation between screens
 
-  - AULA 05 - A milha extra
-    * Finalizamos a aplicação mobile, foi feito nessa aula a conexão do back end com o front end utilizando axios
+  - Lesson 05 - A milha extra
+    * In this lesson, we finish the mobile application, and was created the connection of back-end with front-end using axios
+
+## Usage application
+#### Instalation
+   1. Open terminal
+   2. Paste this code: `git clone https://github.com/nvrsantos/2nlw-rocketseat.git`
+   3. Enter in folder of project with:`cd 2nlw-rocketseat`
+  
+#### Start Server (After of clone the project...)
+   1. Enter in server folder:`cd server`
+   2. Start server with:`yarn start` or `npm start`
+   
+#### Start Web (After of clone the project and server running)
+   1. Enter in web folder:`cd web`
+   2. Start project with:`yarn start` or `npm start`
+      
+#### Start Mobile (After of clone the project and server running)
+   1. Enter in mobile folder:`cd mobile`
+   2. Change the url of api:`cd ./src/services`
+   3. Change the `baseUrl` of file api.ts to the url of backend in your pc
+   4. Back to folder root: `cd ../..`
+   5. Start project with:`yarn start` or `npm start`
