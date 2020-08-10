@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { RectButton } from 'react-native-gesture-handler'
@@ -9,17 +9,9 @@ import teachIcon from '../../assets/images/icons/give-classes.png'
 import heartIcon from '../../assets/images/icons/heart.png'
 
 import styles from './style'
-import api from '../../services/api'
 
 const LandingPage = () => {
     const { navigate } = useNavigation()
-    const [connections, setConnections] = useState(0)
-
-    useEffect(() => {
-        api.get('/connections')
-            .then(res => setConnections(res.data.total))
-            .catch(_ => setConnections(-1))
-    })
 
     const navigateToTeachScreen = () => {
         navigate('TeachPage')
@@ -53,7 +45,7 @@ const LandingPage = () => {
                 </RectButton>
             </View>
             <Text style={styles.textConnections}>
-                Total de {connections} conexões {' '} <Image source={heartIcon} />
+                Total de 5 conexões {' '} <Image source={heartIcon} />
             </Text>
         </View>
     )
