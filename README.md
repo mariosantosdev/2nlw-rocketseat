@@ -9,3 +9,6 @@ Aplicação web criada na Next Level Week da Rocketseat
 
   - AULA 03 - A escolha da stack
     * Foi criado a conexão do front-end com o back-end, fizemos alguns ajustes no css do front end e vimos basicamente o conceito do useState e do useEffect do React
+
+  - AULA 04 - Até 2 anos em 2 meses
+    * Foi criado a base da aplicação mobile utilizando react native, utilizamos react-navigation para a navegação entre telas
