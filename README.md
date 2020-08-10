@@ -1,4 +1,4 @@
-# Next Level Week - Rocketseat
+# Next Level Week 2 - Rocketseat
 Aplicação web criada na Next Level Week da Rocketseat
 
   - AULA 01 - Acelerando sua evolução
