@@ -22,6 +22,7 @@ This application was created at [Next Level Week](https://nextlevelweek.com/)  o
    1. Open terminal
    2. Paste this code: `git clone https://github.com/nvrsantos/2nlw-rocketseat.git`
    3. Enter in folder of project with:`cd 2nlw-rocketseat`
+   4. Install the dependecies with: `yarn install` or `npm install`
   
 #### Start Server (After of clone the project...)
    1. Enter in server folder:`cd server`
