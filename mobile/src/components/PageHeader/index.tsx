@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { View, Text, Image } from 'react-native'
 import { BorderlessButton } from 'react-native-gesture-handler'
 
@@ -8,18 +8,19 @@ import logoImg from '../../assets/images/logo.png'
 import styles from './styles'
 import { useNavigation } from '@react-navigation/native'
 
-interface IPageHeaderProps{
+interface IPageHeaderProps {
     title: string;
+    headerRight?: ReactNode;
 }
 
 const PageHeader: React.FC<IPageHeaderProps> = (props) => {
-    const {navigate} = useNavigation()
+    const { navigate } = useNavigation()
 
     const navigateToLandingScreen = () => {
         navigate('LandingPage')
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <View style={styles.topBar}>
                 <BorderlessButton onPress={navigateToLandingScreen}>
@@ -27,7 +28,11 @@ const PageHeader: React.FC<IPageHeaderProps> = (props) => {
                 </BorderlessButton>
                 <Image source={logoImg} resizeMode="contain" />
             </View>
-            <Text style={styles.title}>{props.title}</Text>
+            <View style={styles.header}>
+                <Text style={styles.title}>{props.title}</Text>
+                {props.headerRight}
+            </View>
+            {props.children}
         </View>
     )
 }
