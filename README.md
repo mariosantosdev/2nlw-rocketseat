@@ -49,8 +49,9 @@ These challenges are to improve the application...
   - [ ] Edit profile
   - [ ] System pagination
   - [x] Favorites teachers
-  - [ ] List all teachers
-  - [ ] List teachers with filters
+  - [x] List all classes
+  - [x] List classes with filters
+  - [ ] List classes per id
   - [ ] List favorites teachers
   
  #### Frontend Web
@@ -63,7 +64,8 @@ These challenges are to improve the application...
   - [ ] Teacher Profile
   - [ ] Edit Profile
   - [ ] Complete Edit Profile
-  - [ ] List Teachers
+  - [ ] List Classes
+  - [ ] Class Page
   
 #### Frontend Mobile
   - [ ] Splash
@@ -77,7 +79,8 @@ These challenges are to improve the application...
   - [ ] Teacher Profile and Edit Profile
   - [ ] Start Teach
   - [ ] Complete Start Teach
-  - [ ] List Teachers
+  - [ ] List Classes
+  - [ ] Class Page
   - [ ] List Favorites Teachers
   
 #### Finish
