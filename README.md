@@ -41,7 +41,7 @@ This application was created at [Next Level Week](https://nextlevelweek.com/)  o
    5. Start project with:`yarn start` or `npm start`
    
 ## Challenge
-These chagallenges are to upgrade the application...
+These challenges are to improve the application...
 [Guide of challenges](https://www.notion.so/Vers-o-2-0-Proffy-eefca1b981694cd0a895613bc6235970)
 #### Backend
   - [x] Signup and Signin
