@@ -39,3 +39,44 @@ This application was created at [Next Level Week](https://nextlevelweek.com/)  o
    3. Change the `baseUrl` of file api.ts to the url of backend in your pc
    4. Back to folder root: `cd ../..`
    5. Start project with:`yarn start` or `npm start`
+   
+## Challenge
+These chagallenges are to upgrade the application...
+[Guide of challenges](https://www.notion.so/Vers-o-2-0-Proffy-eefca1b981694cd0a895613bc6235970)
+#### Backend
+  - [x] Signup and Signin
+  - [ ] Forgout password
+  - [ ] Edit profile
+  - [ ] System pagination
+  - [ ] Favorites Teachers
+  - [ ] List Favorites Teachers
+  
+ #### Frontend Web
+  - [ ] Signup
+  - [ ] Complete Signup
+  - [ ] Signin
+  - [ ] Forgout
+  - [ ] Complete Forgout
+  - [ ] Update Home
+  - [ ] Teacher Profile
+  - [ ] Edit Profile
+  - [ ] Complete Edit Profile
+  - [ ] List Teachers
+  
+#### Frontend Mobile
+  - [ ] Splash
+  - [ ] Onboarding
+  - [ ] Signup
+  - [ ] Complete Signup
+  - [ ] Signin
+  - [ ] Forgout
+  - [ ] Complete Forgout
+  - [ ] Update Home
+  - [ ] Teacher Profile and Edit Profile
+  - [ ] Start Teach
+  - [ ] Complete Start Teach
+  - [ ] List Teachers
+  - [ ] List Favorites Teachers
+  
+#### Finish
+  - [ ] Deploy
