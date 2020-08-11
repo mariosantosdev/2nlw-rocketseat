@@ -48,8 +48,10 @@ These challenges are to improve the application...
   - [ ] Forgout password
   - [ ] Edit profile
   - [ ] System pagination
-  - [ ] Favorites Teachers
-  - [ ] List Favorites Teachers
+  - [x] Favorites teachers
+  - [ ] List all teachers
+  - [ ] List teachers with filters
+  - [ ] List favorites teachers
   
  #### Frontend Web
   - [ ] Signup
