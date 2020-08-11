@@ -9,40 +9,77 @@ interface IScheduleItem {
     to: string
 }
 
-export default class ClassesControlle {
+export default class ClassesController {
     async index(req: Request, res: Response) {
         const filters = req.query
         const week_day = filters.week_day as string
         const subject = filters.subject as string
         const time = filters.time as string
 
-        if (!filters.week_day || !filters.subject || !filters.time) return res.status(400).json({ error: 'Não foi passado nenhum filtro' })
+        if (!filters.subject) { // return res.status(400).json({ error: 'Não foi passado nenhum filtro' })
+            db('classes')
+                .whereExists(function () {
+                    this.select('class_schedule.*')
+                    this.from('class_schedule')
+                    if (filters.week_day) this.where({ week_day })
+                    if (filters.time) {
+                        const timeInMinutes = Convertor(time)
+                        this.whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
+                        this.whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
+                    }
+                })
+                .join('users', 'classes.teacher_id', '=', 'users.id')
+                // .join('class_schedule', 'class_schedule.class_id', '=', 'classes.id')
+                .select(['classes.*', 'users.name', 'users.lastname', 'users.email', 'users.avatar', 'users.whatsapp'])
+                .then(classes => {
+                    return res.status(200).send(classes)
+                })
+                .catch(err => res.status(500).json({ message: 'Ocorreu um erro ao procurar as aulas', error: `${err}` }))
+        } else {
+            db('classes')
+                .whereExists(function () {
+                    this.select('class_schedule.*')
+                    this.from('class_schedule')
+                    if (filters.week_day) this.where({ week_day })
+                    if (filters.time) {
+                        const timeInMinutes = Convertor(time)
+                        this.whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
+                        this.whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
+                    }
+                })
+                .where('classes.subject', '=', subject)
+                .join('users', 'classes.teacher_id', '=', 'users.id')
+                // .join('class_schedule', 'class_schedule.class_id', '=', 'classes.id')
+                .select(['classes.*', 'users.name', 'users.lastname', 'users.email', 'users.avatar', 'users.whatsapp'])
+                .then(classes => {
+                    return res.status(200).send(classes)
+                })
+                .catch(err => res.status(500).json({ message: 'Ocorreu um erro ao procurar as aulas', error: `${err}` }))
+        }
 
-        const timeInMinutes = Convertor(time)
+        // res.send(classes)
+    }
 
-        const classes = await db('classes')
-            .whereExists(function () {
-                this.select('class_schedule.*')
-                    .from('class_schedule')
-                    .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
-                    .whereRaw('`class_schedule`.`week_day` = ??', [Number(week_day)])
-                    .whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
-                    .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
-            })
-            .where('classes.subject', '=', subject)
-            .join('teachers', 'classes.teacher_id', '=', 'teachers.id')
-            .select(['classes.*', 'teachers.*'])
+    async getWithId(req: Request, res: Response) {
+        try {
+            const id = req.params.id
+            let classes
 
-        res.send(classes)
+            const getSchedules = await db('class_schedule').where({ class_id: id }).select('week_day', 'from', 'to', 'class_id')
+            const getClass = await db('classes').where({ id: getSchedules[0].class_id }).select('title', 'desc', 'subject', 'cost', 'teacher_id')
+            const getTeacher = await db('users').where({ id: getClass[0].teacher_id }).select('name', 'lastname', 'email', 'avatar', 'whatsapp')
+
+            classes = { class: getClass[0], schedules: getSchedules, teacher: getTeacher[0] }
+            return res.status(200).send(classes)
+        } catch (error) {
+            res.status(500).json({ message: 'Ocorreu um erro ao procurar as aulas', error: `${error}` })
+        }
     }
 
     async create(req: Request, res: Response) {
         const {
-            name,
-            email,
-            whatsapp,
-            avatar,
-            bio,
+            title,
+            desc,
             subject,
             cost,
             schedule
@@ -51,20 +88,15 @@ export default class ClassesControlle {
         const trx = await db.transaction()
 
         try {
-            const insertedTeachersIds = await trx('teachers').insert({
-                name,
-                email,
-                avatar: avatar || 'https://i.imgur.com/UBwId58.png',
-                whatsapp,
-                bio
-            })
-
-            const teacher_id = insertedTeachersIds[0]
+            const user = await trx('users').where({ id: req.user.id })
+            if(user[0].bio === null|| user[0].whatsapp === null) return res.status(400).json({message: 'Você precisa completar todo seu perfil para ser um professor.'})
 
             const insertedClassesIds = await trx('classes').insert({
+                title,
+                desc,
                 subject,
                 cost,
-                teacher_id
+                teacher_id: req.user.id
             })
 
             const class_id = insertedClassesIds[0]
@@ -77,7 +109,7 @@ export default class ClassesControlle {
                 }
             })
 
-            const sche = await trx.from('class_schedule').insert(classSchedule)
+            await trx.from('class_schedule').insert(classSchedule)
             trx.commit()
 
             return res.status(201).send()
