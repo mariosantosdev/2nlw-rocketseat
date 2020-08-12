@@ -46,7 +46,7 @@ These challenges are to improve the application...
 #### Backend
   - [x] Signup and Signin
   - [ ] Forgout password
-  - [ ] Edit profile
+  - [x] Edit profile
   - [ ] System pagination
   - [x] Favorites teachers
   - [x] Create class only is completed the profile
@@ -54,7 +54,7 @@ These challenges are to improve the application...
   - [x] List all classes
   - [x] List classes with filters
   - [x] List classes per id
-  - [ ] List favorites teachers
+  - [x] List favorites teachers
   
  #### Frontend Web
   - [ ] Signup
