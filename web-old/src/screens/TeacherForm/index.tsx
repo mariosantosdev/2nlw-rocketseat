@@ -11,16 +11,14 @@ import Select from '../../components/Select'
 import './styles.css'
 
 export default function TeacherForm() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [whatsapp, setWhatsapp] = useState('')
-    const [bio, setBio] = useState('')
+    const [title, setTitle] = useState('')
+    const [desc, setDesc] = useState('')
 
     const [subject, setSubject] = useState('')
     const [cost, setCost] = useState('')
 
     const [scheduleItems, setScheduleItems] = useState([
-        { "week_day": 0, from: '', to: '' }
+        { "week_day": "Dom", from: '', to: '' }
     ])
 
     const history = useHistory()
@@ -28,7 +26,7 @@ export default function TeacherForm() {
     function addScheduleItem() {
         setScheduleItems([
             ...scheduleItems,
-            { "week_day": 0, from: '', to: '' }
+            { "week_day": "Dom", from: '', to: '' }
         ])
     }
 
@@ -36,10 +34,8 @@ export default function TeacherForm() {
         event.preventDefault()
 
         api.post('/classes', {
-            name,
-            email,
-            whatsapp,
-            bio,
+            title,
+            desc,
             subject,
             cost: Number(cost),
             schedule: scheduleItems
@@ -48,7 +44,10 @@ export default function TeacherForm() {
                 alert('Cadastrado com sucesso')
                 history.push('/')
             })
-            .catch(_ => alert('Ocorreu um erro'))
+            .catch(err => {
+                console.log(err)
+                alert('Ocorreu um erro')
+            })
     }
 
     function setScheduleItemValue(position: number, param: string, value: string) {
@@ -70,30 +69,17 @@ export default function TeacherForm() {
             <main>
                 <form onSubmit={createClass}>
                     <fieldset>
-                        <legend>Dados</legend>
-                        <Input name="name"
-                            label="Nome completo"
-                            onChange={text => setName(text.target.value)}
-                            value={name}
-                        />
-                        <Input name="email"
-                            label="Email"
-                            onChange={text => setEmail(text.target.value)}
-                            value={email}
-                        />
-                        <Input name="whatsapp"
-                            label="Whatsapp"
-                            onChange={text => setWhatsapp(text.target.value)}
-                            value={whatsapp}
-                        />
-                        <TextArea name="bio"
-                            label="Biografia"
-                            onChange={text => setBio(text.target.value)}
-                            value={bio}
-                        />
-                    </fieldset>
-                    <fieldset>
                         <legend>Aula</legend>
+                        <Input name="title"
+                            label="Titulo da Aula"
+                            onChange={text => setTitle(text.target.value)}
+                            value={title}
+                        />
+                        <TextArea name="desc"
+                            label="Descrição"
+                            onChange={text => setDesc(text.target.value)}
+                            value={desc}
+                        />
                         <Select
                             name="subject"
                             label="Matéria"
@@ -134,13 +120,13 @@ export default function TeacherForm() {
                                         value={item.week_day}
                                         onChange={select => setScheduleItemValue(index, 'week_day', select.target.value)}
                                         options={[
-                                            { value: '0', label: 'Domingo' },
-                                            { value: '1', label: 'Segunda-feira' },
-                                            { value: '2', label: 'Terça-feita' },
-                                            { value: '3', label: 'Quarta-feira' },
-                                            { value: '4', label: 'Quinta-feira' },
-                                            { value: '5', label: 'Sexta-feira' },
-                                            { value: '6', label: 'Sábado' },
+                                            { value: 'Dom', label: 'Domingo' },
+                                            { value: 'Seg', label: 'Segunda-feira' },
+                                            { value: 'Ter', label: 'Terça-feita' },
+                                            { value: 'Qua', label: 'Quarta-feira' },
+                                            { value: 'Qui', label: 'Quinta-feira' },
+                                            { value: 'Sex', label: 'Sexta-feira' },
+                                            { value: 'Sab', label: 'Sábado' },
                                         ]}
                                     />
                                     <Input
