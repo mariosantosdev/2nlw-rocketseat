@@ -57,15 +57,12 @@ These challenges are to improve the application...
   - [x] List favorites teachers
   
  #### Frontend Web
-  - [ ] Signup
-  - [ ] Complete Signup
-  - [ ] Signin
+  - [x] Signup
+  - [x] Signin
   - [ ] Forgout
-  - [ ] Complete Forgout
   - [ ] Update Home
   - [ ] Teacher Profile
   - [ ] Edit Profile
-  - [ ] Complete Edit Profile
   - [ ] List Classes
   - [ ] Class Page
   
