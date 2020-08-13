@@ -24,12 +24,15 @@ Router.route('/connections')
     .get(connectionsController.index)
     .post(connectionsController.create)
 
-Router.route('/users')
-    .get(usersController.index)
+Router.route('/signup')
     .post(usersController.create)
 
-Router.route('/users/favorite/:id')
+Router.route('/signin')
+    .post(usersController.index)
+
+Router.route('/users/favorite/:id?')
     .all(authController.index().authenticate())
+    .get(usersController.listFavorites)
     .put(usersController.addFavorite)
 
 Router.route('/users/edit/:id')

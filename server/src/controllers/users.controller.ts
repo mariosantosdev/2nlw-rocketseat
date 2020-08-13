@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 
 const SECRET = authSecret
 
+
 export default class UsersController {
     async index(req: Request, res: Response) {
         const { email, password } = req.body
@@ -57,9 +58,9 @@ export default class UsersController {
                         })
 
                         trx.commit()
-                        res.status(200).json({ message: 'Cadastrado com sucesso' })
+                        res.status(200).json({ message: 'Cadastrado com sucesso.' })
                     } catch (error) {
-                        res.status(500).json({ message: 'Ocorreu um erro ao criar um usuário' })
+                        res.status(500).json({ message: 'Ocorreu um erro ao criar um usuário.' })
                     }
                 })
             })
@@ -83,7 +84,7 @@ export default class UsersController {
                         favoritesArray.push(teacherId) // Adicionar o id do professor a lista
                         favorites = favoritesArray.toString() // Converter a lista para string
                     } else {
-                        favoritesArray = [favorites] // Converte a string do banco de dados para array
+                        favoritesArray = favorites.split(',') // Converte a string do banco de dados para array
 
                         // Se no array tiver o id do professor
                         if (favoritesArray.includes(teacherId)) {
@@ -93,6 +94,7 @@ export default class UsersController {
                             });
                         } else {
                             favoritesArray.push(teacherId) // Adiciona o id do professor na lista
+                            favorites = favoritesArray.toString() // Converter a lista para string
                         }
 
                         // Se o tamanho da lista for igual a 0, o retorno do favorites vai ser null, se não o retorno vai ser a lista
@@ -122,11 +124,11 @@ export default class UsersController {
             bio
         } = req?.body
 
-        if(!name?.trim() && name?.trim() === "") res.status(400).json({message: 'Você deve escrever um nome.'})
-        if(!lastname?.trim() && lastname?.trim() === "") res.status(400).json({message: 'Você deve escrever um sobrenome.'})
-        if(!email?.trim() && email?.trim() === "") res.status(400).json({message: 'Você deve escrever um e-mail.'})
-        if(!whatsapp?.trim() && whatsapp?.trim() === "") res.status(400).json({message: 'Você deve escrever seu whatsapp.'})
-        if(!bio?.trim() && bio?.trim() === "") res.status(400).json({message: 'Você deve escrever uma briografia.'})
+        if (!name?.trim() && name?.trim() === "") res.status(400).json({ message: 'Você deve escrever um nome.' })
+        if (!lastname?.trim() && lastname?.trim() === "") res.status(400).json({ message: 'Você deve escrever um sobrenome.' })
+        if (!email?.trim() && email?.trim() === "") res.status(400).json({ message: 'Você deve escrever um e-mail.' })
+        if (!whatsapp?.trim() && whatsapp?.trim() === "") res.status(400).json({ message: 'Você deve escrever seu whatsapp.' })
+        if (!bio?.trim() && bio?.trim() === "") res.status(400).json({ message: 'Você deve escrever uma briografia.' })
 
         await db('users').where({ id: req.user.id }).update(req.body)
             .then(async _ => {
@@ -135,5 +137,29 @@ export default class UsersController {
                 res.status(201).json({ message: 'Perfil atualizado.', token })
             })
             .catch(err => res.status(500).json({ message: 'Ocorreu um erro ao atualizar o perfil', error: `${err}` }))
+    }
+
+    async listFavorites(req: Request, res: Response) {
+        const { email } = req.user
+        db('users').where({ email })
+            .then(async user => {
+                try {
+                    let favorites = user[0].favorites
+                    let favoritesArray: (string | number)[] = []
+                    let teachers: (string | number)[] = []
+
+                    if (favorites === null) return res.status(200).json({ message: 'Nenhum professor favorito' })
+                    favoritesArray = favorites.split(',')
+                    for (let i = 0; i < favoritesArray.length; i++) {
+                        const teacherId = favoritesArray[i];
+
+                        let getTeacher = await db('users').where({ id: teacherId }).select('name', 'lastname', 'email', 'avatar', 'whatsapp', 'bio')
+                        teachers.push(getTeacher[0])
+                    }
+                    res.status(200).json({ teachers })
+                } catch (error) {
+                    res.status(400).json({ message: 'Ocorreu um erro ao procurar os professores favoritos.', error: `${error}` })
+                }
+            })
     }
 }
