@@ -36,7 +36,7 @@ export default function Signin() {
         event.preventDefault()
 
         if(name.trim() === '' || lastname.trim() === '' || email.trim() === '' || password.trim() === '') return alert('Por favor, complete todos os campos!')
-        await api.post('/users', {
+        await api.post('/signup', {
             name,
             lastname,
             email,

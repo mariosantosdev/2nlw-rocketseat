@@ -7,18 +7,21 @@ import {
     Col,
     Button
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+
 import Input from '../../components/Input'
 import api from '../../services/api'
 import { Login } from '../../services/auth'
+import { SetUser } from '../../store/actions/user.actions'
 
 import logo from '../../assets/images/logo.svg'
 import heart from '../../assets/images/icons/purple-heart.svg'
 
 import './styles.css'
 
-export default function Signin() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+function Signin(props) {
+    const [email, setEmail] = useState('playcar46@gmail.com')
+    const [password, setPassword] = useState('123')
     const [canLogin, setCanLogin] = useState(false)
     const [remember, setRemeber] = useState(false)
     const history = useHistory()
@@ -39,9 +42,16 @@ export default function Signin() {
             password
         })
             .then(res => {
-                const { token } = res.data
+                const { token, user } = res.data
 
-                remember === true ? Login(token, 'local') : Login(token, 'session')
+                if (remember === true) {
+                    Login(token, 'local')
+                    props.onLogin(user)
+                } else {
+                    Login(token, 'session')
+                    props.onLogin(user)
+                }
+
                 history.go(0)
             })
             .catch(err => {
@@ -111,3 +121,11 @@ export default function Signin() {
         </Container>
     )
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: user => dispatch(SetUser(user))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signin)
