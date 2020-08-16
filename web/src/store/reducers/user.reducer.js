@@ -1,19 +1,9 @@
 import { SET_USER } from '../actions/types.actions'
 
-const initialState = {
-    user: {
-        id: null,
-        name: null,
-        lastname: null,
-        email: null,
-        favorites: null,
-        avatar: null,
-        whatsapp: null,
-        bio: null
-    }
-}
+let user = JSON.parse(localStorage.getItem('user'))
+const initialState = user ? { user } : { user: {} }
 
-const reducers = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
             return {
@@ -26,4 +16,4 @@ const reducers = (state = initialState, action) => {
     }
 }
 
-export default reducers
+export default reducer

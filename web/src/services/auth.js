@@ -13,8 +13,15 @@ export const Login = (token, type = 'session') => {
 }
 
 export const Logout = () => {
-    if (localStorage.getItem(keyTokenStorage)) localStorage.removeItem(keyTokenStorage)
-    if (sessionStorage.getItem(keyTokenStorage)) sessionStorage.removeItem(keyTokenStorage)
+    if (localStorage.getItem(keyTokenStorage)) {
+        localStorage.removeItem('user')
+        localStorage.removeItem(keyTokenStorage)
+    }
+
+    if (sessionStorage.getItem(keyTokenStorage)) {
+        localStorage.removeItem('user')
+        sessionStorage.removeItem(keyTokenStorage)
+    }
 }
 
 export const IsLogin = () => {

@@ -1,0 +1,61 @@
+#home-container {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+#home-container .header {
+    height: 8rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--color-primary);
+}
+
+.header .perfil {
+    justify-content: flex-start;
+    align-items: center;
+    flex: 2;
+}
+
+.header .perfil .perfil-content {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header .perfil-content .avatar {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+}
+
+.header .perfil-content p {
+    color: var(--color-text-in-primary);
+    font: 400 1.6rem Poppins;
+    margin-left: 2rem;
+}
+
+.header .logout{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.header .logout .button-logout{
+    background-color: var(--color-primary-darker);
+    border: 0;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 15%;
+}
+
+.header .button-logout .icon-logout{
+    color: var(--color-text-in-primary);
+    width: 2rem;
+    height: 2rem;
+}

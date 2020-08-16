@@ -3,4 +3,8 @@ import thunk from 'redux-thunk'
 
 import rootReducers from './reducers/'
 
-export default createStore(rootReducers, compose(applyMiddleware(thunk)))
+const storeConfig = () => {
+    return createStore(rootReducers, compose(applyMiddleware(thunk)))
+}
+
+export default storeConfig
