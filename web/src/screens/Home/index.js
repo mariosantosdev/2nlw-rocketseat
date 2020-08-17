@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
     Container,
@@ -11,6 +11,12 @@ import { RiShutDownLine } from 'react-icons/ri'
 
 import { Logout } from '../../services/auth'
 
+import logoImg from '../../assets/images/logo.svg'
+import landingImg from '../../assets/images/landing.svg'
+
+import studyIcon from '../../assets/images/icons/study.svg'
+import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
+import teachIcon from '../../assets/images/icons/teach.svg'
 import './style.css'
 
 function HomePage(props) {
@@ -32,7 +38,7 @@ function HomePage(props) {
 
     return (
         <div id="home-container">
-            <Container fluid className="header">
+            <div className="header">
                 <Container>
                     <Row>
                         <Col className="row perfil" >
@@ -48,9 +54,35 @@ function HomePage(props) {
                         </Col>
                     </Row>
                 </Container>
-            </Container>
-            <Container fluid className="hero">
-                
+            </div>
+            <div className="content landing-content">
+                <div className="logo-container">
+                    <img src={logoImg} alt="MyProf" />
+                    <h2>Plataforma de estudos online</h2>
+                </div>
+                <img src={landingImg} alt="Plataforma de estudos" className="hero-image" />
+            </div>
+            <Container fluid className="bottom">
+                <div className="container bottom-container">
+                    <span className="welcome-text">
+                        Olá, {props.user.name} <br></br><b>O que deseja fazer ?</b>
+                    </span>
+                    <div>
+                        <div className="buttons-container">
+                            <Link to="/study" className="study">
+                                <img src={studyIcon} alt="Estudar" />
+                            Estudar
+                        </Link>
+                            <Link to="/teach" className="teach">
+                                <img src={teachIcon} alt="Ensinar" />
+                            Ensinar
+                        </Link>
+                        </div>
+                        <span className="total-connections">
+                            Total de 200 conexões <img src={purpleHeartIcon} alt="Coração Roxo" />
+                        </span>
+                    </div>
+                </div>
             </Container>
         </div>
     )
