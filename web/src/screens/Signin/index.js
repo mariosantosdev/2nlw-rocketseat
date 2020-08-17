@@ -20,8 +20,8 @@ import heart from '../../assets/images/icons/purple-heart.svg'
 import './styles.css'
 
 function Signin(props) {
-    const [email, setEmail] = useState('playcar46@gmail.com')
-    const [password, setPassword] = useState('123')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [canLogin, setCanLogin] = useState(false)
     const [remember, setRemeber] = useState(false)
     const history = useHistory()
