@@ -60,7 +60,7 @@ These challenges are to improve the application...
   - [x] Signup
   - [x] Signin
   - [ ] Forgout
-  - [ ] Update Home
+  - [x] Update Home
   - [ ] Teacher Profile
   - [ ] Edit Profile
   - [ ] List Classes
