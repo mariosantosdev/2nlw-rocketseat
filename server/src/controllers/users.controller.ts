@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const SECRET = authSecret
-
+const gravatar = require('gravatar-url')
 
 export default class UsersController {
     async index(req: Request, res: Response) {
@@ -49,12 +49,13 @@ export default class UsersController {
                     const trx = await db.transaction()
 
                     try {
+                        const avatar = gravatar(email, { size: 200 })
                         await trx('users').insert({
                             name,
                             lastname,
                             email,
                             password,
-                            avatar: 'https://i.imgur.com/UBwId58.png',
+                            avatar: avatar || 'https://i.imgur.com/MqLMI9j.png',
                         })
 
                         trx.commit()
