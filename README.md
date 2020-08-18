@@ -49,6 +49,7 @@ These challenges are to improve the application...
   - [x] Edit profile
   - [ ] System pagination
   - [x] Favorites teachers
+  - [x] Show user by id
   - [x] Create class only is completed the profile
   - [x] Create class
   - [x] List all classes
