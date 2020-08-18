@@ -45,9 +45,7 @@ These challenges are to improve the application...
 [Guide of challenges](https://www.notion.so/Vers-o-2-0-Proffy-eefca1b981694cd0a895613bc6235970)
 #### Backend
   - [x] Signup and Signin
-  - [ ] Forgout password - TEMP. DEPRECATED
   - [x] Edit profile
-  - [ ] System pagination - TEMP. DEPRECATED
   - [x] Favorites teachers
   - [x] Show user by id
   - [x] Create class only is completed the profile
@@ -56,12 +54,14 @@ These challenges are to improve the application...
   - [x] List classes with filters
   - [x] List classes per id
   - [x] List favorites teachers
+  - [ ] Forgout password - TEMP. DEPRECATED
+  - [ ] System pagination - TEMP. DEPRECATED
   
  #### Frontend Web
   - [x] Signup
   - [x] Signin
-  - [ ] Forgout - TEMP. DEPRECATED
   - [x] Update Home
+  - [ ] Forgout - TEMP. DEPRECATED
   - [ ] Teacher Profile - TEMP. DEPRECATED
   - [ ] Edit Profile - TEMP. DEPRECATED
   - [ ] List Classes - TEMP. DEPRECATED
