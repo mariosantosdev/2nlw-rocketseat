@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {
@@ -9,21 +9,21 @@ import {
 } from 'react-bootstrap'
 import { RiShutDownLine } from 'react-icons/ri'
 
-import { Logout } from '../../services/auth'
+import { Logout, IsLogin } from '../../services/auth'
 
 import logoImg from '../../assets/images/logo.svg'
 import landingImg from '../../assets/images/landing.svg'
-
 import studyIcon from '../../assets/images/icons/study.svg'
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 import teachIcon from '../../assets/images/icons/teach.svg'
 import './style.css'
 
+
 function HomePage(props) {
     const history = useHistory()
 
     useEffect(() => {
-        if (props.user && !props.user.id) history.goBack()
+        if (props.user && !props.user.id) window.location.href = '/signin'
     }, [])
 
     const signout = () => {
@@ -32,9 +32,7 @@ function HomePage(props) {
         history.go(0)
     }
 
-    const navigateToProfile = () => {
-        // history.go(0)
-    }
+    const navigateToProfile = () => window.location.href = `/profile/${props.user.id}`
 
     return (
         <div id="home-container">

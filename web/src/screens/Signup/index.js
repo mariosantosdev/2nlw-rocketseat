@@ -71,6 +71,7 @@ export default function Signin() {
                                 placeholder="Digite seu nome"
                                 value={name}
                                 onChange={(text) => setName(text.target.value)}
+                                column
                             />
                             <Input
                                 label="Sobrenome"
@@ -79,6 +80,7 @@ export default function Signin() {
                                 placeholder="Digite seu sobrenome"
                                 value={lastname}
                                 onChange={(text) => setLastname(text.target.value)}
+                                column
                             />
                             <Input
                                 label="E-mail"
@@ -87,6 +89,7 @@ export default function Signin() {
                                 placeholder="Digite seu email"
                                 value={email}
                                 onChange={(text) => setEmail(text.target.value)}
+                                column
                             />
                             <Input
                                 label="Senha"
@@ -95,6 +98,7 @@ export default function Signin() {
                                 placeholder="Digite sua senha"
                                 value={password}
                                 onChange={(text) => setPassword(text.target.value)}
+                                column
                             />
                             <Button type="submit" className="submit" variant="success" disabled={!canRegister}>Concluir Cadastro</Button>
                         </Form>

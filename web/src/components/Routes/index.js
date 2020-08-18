@@ -5,7 +5,7 @@ import { IsLogin } from '../../services/auth'
 export const PublicRoute = ({component: Component, restricted, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            IsLogin() && restricted ?
+            IsLogin().logged && restricted ?
                 <Redirect to="/" />
             : <Component {...props} />
         )} />
@@ -16,7 +16,7 @@ export const PrivateRoute = ({component: Component, ...rest}) => {
     return (
 
         <Route {...rest} render={props => (
-            IsLogin() ?
+            IsLogin().logged ?
                 <Component {...props} />
             : <Redirect to="/signin" />
         )} />

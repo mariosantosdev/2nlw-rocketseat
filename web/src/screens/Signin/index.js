@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {
     Container,
     Row,
@@ -18,6 +18,7 @@ import logo from '../../assets/images/logo.svg'
 import heart from '../../assets/images/icons/purple-heart.svg'
 
 import './styles.css'
+import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
 
 function Signin(props) {
     const [email, setEmail] = useState('')
@@ -82,6 +83,7 @@ function Signin(props) {
                                 placeholder="Digite seu email"
                                 value={email}
                                 onChange={(text) => setEmail(text.target.value)}
+                                column
                             />
                             <Input
                                 label="Senha"
@@ -90,6 +92,7 @@ function Signin(props) {
                                 placeholder="Digite sua senha"
                                 value={password}
                                 onChange={(text) => setPassword(text.target.value)}
+                                column
                             />
                             <Form.Group>
                                 <Row>

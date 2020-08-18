@@ -1,0 +1,25 @@
+#header-container{
+    width: 100vw !important;
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-in-primary);
+}
+
+#header-container .header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header-content .header-left img{
+    cursor: pointer;
+}
+
+.header-content .header-center p{
+    margin: 0 auto;
+}
+
+.header-content .header-right img{
+    height: 1.5rem;
+}

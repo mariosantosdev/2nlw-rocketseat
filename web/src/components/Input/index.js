@@ -1,16 +1,13 @@
 import React from 'react'
 
-import {
-    Form
-} from 'react-bootstrap'
 
 import './styles.css'
 
 export default function InputComponent(props) {
     return (
-        <Form.Group>
-            <Form.Label>{props.label}</Form.Label>
-            <Form.Control {...props} />
-        </Form.Group>
+        <div className={`input-block ${props.column && 'column-input'}`} >
+            <label htmlFor={props.name}>{props.label}</label>
+            <input type="text" id={props.name} {...props} />
+        </div>
     )
 }

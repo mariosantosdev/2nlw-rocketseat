@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from './api'
 
 const keyTokenStorage = '@prof/auth_token'
 
@@ -8,8 +8,6 @@ export const Login = (token, type = 'session') => {
     } else {
         sessionStorage.setItem(keyTokenStorage, token)
     }
-
-    axios.defaults.headers.common['Authorization'] = token
 }
 
 export const Logout = () => {
@@ -25,7 +23,7 @@ export const Logout = () => {
 }
 
 export const IsLogin = () => {
-    if (localStorage.getItem(keyTokenStorage)) return true
-    if (sessionStorage.getItem(keyTokenStorage)) return true
-    return false
+    if (localStorage.getItem(keyTokenStorage)) return { logged: true, token: `bearer ${localStorage.getItem(keyTokenStorage)}` }
+    if (sessionStorage.getItem(keyTokenStorage)) return { logged: true, token: `bearer ${sessionStorage.getItem(keyTokenStorage)}` }
+    return { logged: false, token: null }
 }
