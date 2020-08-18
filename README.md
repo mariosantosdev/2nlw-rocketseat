@@ -68,4 +68,4 @@ These challenges are to improve the application...
   - [ ] Class Page - TEMP. DEPRECATED
   
 #### Finish
-  - [ ] Deploy
+  - [ ] Deploy - TEMP. DEPRECATED
