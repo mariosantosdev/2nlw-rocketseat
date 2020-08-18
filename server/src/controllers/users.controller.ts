@@ -163,4 +163,24 @@ export default class UsersController {
                 }
             })
     }
+
+    async showProfile(req: Request, res: Response) {
+        const { id } = req.params
+
+        // Verifica se foi passado um email e uma senha
+        if (id) {
+            const getUser = await db('users')
+            .where({ id })
+            .select('id', 'name', 'lastname', 'email', 'avatar', 'whatsapp', 'bio') // Pega o usuario no banco de dados
+
+            // Verifica se encontrou algum usuario no banco de dados
+            if (getUser.length >= 1) {
+                return res.status(200).json({ user: getUser[0] })
+            } else {
+                return res.status(400).json({ message: 'Usuário inválido.' })
+            }
+        } else {
+            return res.status(400).json({ message: 'Id de usuário inválido.' })
+        }
+    }
 }

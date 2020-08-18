@@ -30,6 +30,10 @@ Router.route('/signup')
 Router.route('/signin')
     .post(usersController.index)
 
+Router.route('/users/:id')
+    .all(authController.index().authenticate())
+    .post(usersController.showProfile)
+
 Router.route('/users/favorite/:id?')
     .all(authController.index().authenticate())
     .get(usersController.listFavorites)
